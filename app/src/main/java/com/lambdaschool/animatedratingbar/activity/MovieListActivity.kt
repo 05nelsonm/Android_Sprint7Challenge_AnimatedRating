@@ -5,7 +5,7 @@ import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.lambdaschool.animatedratingbar.R
-import com.lambdaschool.animatedratingbar.adapter.MovieListAdapter
+//import com.lambdaschool.animatedratingbar.adapter.MovieListAdapter
 import com.lambdaschool.animatedratingbar.model.MovieItem
 import kotlinx.android.synthetic.main.activity_movie_list.*
 
@@ -21,10 +21,10 @@ class MovieListActivity : AppCompatActivity() {
             //link to fragment to add movie
         }
 
-        list_view.setHasFixedSize(true)
+        /*list_view.setHasFixedSize(true)
         val manager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
         val adapter = MovieListAdapter(movieList)
         list_view.layoutManager = manager
-        list_view.adapter = adapter
+        list_view.adapter = adapter*/
     }
 }

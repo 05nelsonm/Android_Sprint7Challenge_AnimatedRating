@@ -1,5 +1,6 @@
 package com.lambdaschool.animatedratingbar.adapter
 
+/*
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -38,7 +39,7 @@ class MovieListAdapter(private val data: MutableList<MovieItem>) :
         holder.name.text = data[position].movieName
         holder.rating.text = data[position].movieRating.toString()
         holder.itemCard.setOnClickListener {
-            // link to fragment activity and load data
+            // link to fragment
         }
     }
-}
+}*/

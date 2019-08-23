@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="tv_movie_name" type="id"/>
+    <item name="tv_dash" type="id"/>
+    <item name="tv_movie_rating" type="id"/>
+</resources>

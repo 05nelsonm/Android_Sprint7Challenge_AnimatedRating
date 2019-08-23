@@ -12,13 +12,13 @@
     app:cardElevation="@dimen/cardview_default_elevation"
     app:cardUseCompatPadding="true">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <com.lambdaschool.animatedratingbar.view.CustomCardView
         android:id="@+id/card_constraint_id"
+        android:entries="@array/custom_card_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="8dp">
+        android:layout_height="wrap_content">
 
-        <TextView
+        <!--<TextView
             android:id="@+id/tv_movie_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -49,8 +49,8 @@
             android:textSize="28sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@id/tv_dash"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent" />-->
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.lambdaschool.animatedratingbar.view.CustomCardView>
 
 </androidx.cardview.widget.CardView>
