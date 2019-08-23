@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <item name="tv_movie_name" type="id"/>
-    <item name="tv_dash" type="id"/>
-    <item name="tv_movie_rating" type="id"/>
+    <item name="et_movie_name" type="id"/>
+    <item name="iv_star1" type="id"/>
+    <item name="iv_star2" type="id"/>
+    <item name="iv_star3" type="id"/>
+    <item name="iv_star4" type="id"/>
+    <item name="iv_star5" type="id"/>
 </resources>

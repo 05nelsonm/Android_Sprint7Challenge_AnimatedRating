@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginStart="8dp"
-    android:layout_marginTop="8dp"
     android:layout_marginEnd="8dp"
     android:backgroundTint="@color/secondaryLightColor"
     android:id="@+id/item_card"
@@ -12,19 +11,19 @@
     app:cardElevation="@dimen/cardview_default_elevation"
     app:cardUseCompatPadding="true">
 
-    <com.lambdaschool.animatedratingbar.view.CustomCardView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/card_constraint_id"
-        android:entries="@array/custom_card_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <!--<TextView
+        <TextView
             android:id="@+id/tv_movie_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="This Movie"
             android:textColor="@color/secondaryTextColor"
             android:textSize="28sp"
+            android:layout_marginStart="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -49,8 +48,8 @@
             android:textSize="28sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@id/tv_dash"
-            app:layout_constraintTop_toTopOf="parent" />-->
+            app:layout_constraintTop_toTopOf="parent" />
 
-    </com.lambdaschool.animatedratingbar.view.CustomCardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>

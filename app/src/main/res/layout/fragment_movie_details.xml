@@ -1,49 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
-    android:layout_height="125dp"
+    android:layout_width="250dp"
+    android:layout_height="80dp"
     android:layout_gravity="center"
+    android:background="@color/secondaryLightColor"
     tools:context=".fragment.MovieDetailsFragment">
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Name" />
-
     <LinearLayout
+        android:orientation="vertical"
+        android:layout_marginStart="18dp"
+        android:layout_marginEnd="18dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/iv_one"
+        <EditText
+            android:textColorHint="@color/secondaryTextColor"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:hint="Name"
+            android:textAlignment="center" />
 
-        <ImageView
-            android:id="@+id/iv_two"
+        <!--<com.lambdaschool.animatedratingbar.view.CustomFragmentDetailView
+            android:gravity="center"
+            android:layout_gravity="bottom"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:layout_height="wrap_content">-->
 
-        <ImageView
-            android:id="@+id/iv_three"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            <LinearLayout
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="32dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/iv_four"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
+                <ImageView
+                    android:src="@drawable/avd_emptytofilled"
+                    android:id="@+id/iv_star1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
 
-        <ImageView
-            android:id="@+id/iv_five"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
+                <ImageView
+                    android:src="@drawable/avd_emptytofilled"
+                    android:id="@+id/iv_star2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <ImageView
+                    android:src="@drawable/avd_emptytofilled"
+                    android:id="@+id/iv_star3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <ImageView
+                    android:src="@drawable/avd_emptytofilled"
+                    android:id="@+id/iv_star4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <ImageView
+                    android:src="@drawable/avd_emptytofilled"
+                    android:id="@+id/iv_star5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+            </LinearLayout><!--</com.lambdaschool.animatedratingbar.view.CustomFragmentDetailView>-->
 
     </LinearLayout>
 
