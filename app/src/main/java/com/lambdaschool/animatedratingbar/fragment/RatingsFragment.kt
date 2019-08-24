@@ -1,5 +1,6 @@
 package com.lambdaschool.animatedratingbar.fragment
 
+import android.content.Context
 import android.os.Bundle
 import android.view.KeyEvent
 import androidx.fragment.app.Fragment
@@ -26,6 +27,7 @@ private const val ARG_PARAM2 = "param2"
  * Use the [MovieDetailsFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
+
 class RatingsFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
@@ -45,7 +47,7 @@ class RatingsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.activity_fragment, container, false)
+        return inflater.inflate(R.layout.fragment_ratings, container, false)
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -57,6 +59,8 @@ class RatingsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val item = arguments?.getSerializable(FRAGMENT_KEY) as MovieItem
+        val originalItemName = item.movieName
+        val originalItemRating = item.movieRating
 
         et_movie_name.setText(item.movieName)
         //ratingStarAnimate(item.movieRating)
@@ -87,26 +91,22 @@ class RatingsFragment : Fragment() {
             // ratingStarAnimate(item.movieRating)
         }
 
-        et_movie_name.setOnKeyListener(View.OnKeyListener { v, keyCode, event ->
+        et_movie_name.setOnKeyListener(View.OnKeyListener { _, keyCode, event ->
             if (keyCode == KeyEvent.KEYCODE_ENTER && event.action == KeyEvent.ACTION_UP) {
                 item.movieName = et_movie_name.text.toString()
+                if (originalItemName == "") {
+                    item.changedBoolean = false // was a new input, so use .notifyItemInserted(index)
+                } else if (originalItemName != item.movieName || originalItemRating != item.movieRating){
+                    item.changedBoolean = true // item was updated, so use .notifyItemChanged(index)
+                }
                 listener?.onRatingsFragmentInteraction(item)
                 return@OnKeyListener true
             }
             false
         })
-
-        //listener?.onRatingsFragmentInteraction(MovieItem("UUUUUUU", item.movieRating, 0))
-
-        /*for (i in 1 until 5) {
-            when (i <= item.movieRating) {
-                true ->
-            }
-        }*/
-
     }
 
-/*    override fun onAttach(context: Context) {
+    override fun onAttach(context: Context) {
         super.onAttach(context)
         if (context is OnRatingsFragmentInteractionListener) {
             listener = context
@@ -118,7 +118,7 @@ class RatingsFragment : Fragment() {
     override fun onDetach() {
         super.onDetach()
         listener = null
-    }*/
+    }
 
     /**
      * This interface must be implemented by activities that contain this
@@ -131,6 +131,7 @@ class RatingsFragment : Fragment() {
      * (http://developer.android.com/training/basics/fragments/communicating.html)
      * for more information.
      */
+
     interface OnRatingsFragmentInteractionListener {
         fun onRatingsFragmentInteraction(item: MovieItem)
     }

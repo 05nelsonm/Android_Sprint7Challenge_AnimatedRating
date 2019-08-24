@@ -25,12 +25,11 @@ private const val ARG_PARAM2 = "param2"
  * Use the [button.newInstance] factory method to
  * create an instance of this fragment.
  */
-class AddButtonFragment : Fragment(), RatingsFragment.OnRatingsFragmentInteractionListener {
+class AddButtonFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
     private var listener: OnButtonFragmentInteractionListener? = null
-    private var listener2: RatingsFragment.OnRatingsFragmentInteractionListener? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,19 +37,6 @@ class AddButtonFragment : Fragment(), RatingsFragment.OnRatingsFragmentInteracti
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
-    }
-
-    override fun onRatingsFragmentInteraction(item: MovieItem) {
-        val buttonFragment = RatingsFragment()
-
-        val bundle = Bundle()
-        bundle.putSerializable(FRAGMENT_KEY, item)
-        buttonFragment.arguments = bundle
-
-        childFragmentManager.beginTransaction()
-            .replace(R.id.ratings_fragment_holder, buttonFragment)
-            .addToBackStack(null)
-            .commit()
     }
 
     override fun onCreateView(
@@ -66,7 +52,7 @@ class AddButtonFragment : Fragment(), RatingsFragment.OnRatingsFragmentInteracti
 
         btn_add_movie.setOnClickListener {
             Toast.makeText(context, "Add a movie", Toast.LENGTH_SHORT).show()
-            listener2?.onRatingsFragmentInteraction(MovieItem("", 0, -1))
+            listener?.onButtonFragmentInteraction(MovieItem("", 0, -1, false))
         }
     }
 

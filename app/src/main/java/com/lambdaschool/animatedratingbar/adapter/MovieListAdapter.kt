@@ -19,7 +19,7 @@ class MovieListAdapter(
     private val listener: ListFragment.OnListFragmentInteractionListener?
 ) : RecyclerView.Adapter<MovieListAdapter.ViewHolder>() {
 
-    lateinit var contextRV: Context
+    lateinit var context: Context
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val name: TextView = view.tv_movie_name
@@ -39,7 +39,7 @@ class MovieListAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val viewGroup =
             LayoutInflater.from(parent.context).inflate(R.layout.movie_item_layout, parent, false)
-        contextRV = parent.context
+        context = parent.context
         return ViewHolder(viewGroup)
     }
 
@@ -55,7 +55,7 @@ class MovieListAdapter(
                 listener.onListFragmentInteraction(data[position])
             }
 
-            Toast.makeText(contextRV, "${data[position].movieIndexPos}", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, "${data[position].movieIndexPos}", Toast.LENGTH_SHORT).show()
         }
 
 
