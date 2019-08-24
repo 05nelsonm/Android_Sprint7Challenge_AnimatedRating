@@ -7,9 +7,9 @@
     android:layout_height="match_parent"
     android:background="@color/secondaryColor"
     android:orientation="vertical"
-    tools:context=".activity.MovieListActivity">
+    tools:context=".activity.MovieDetail">
 
-    <Button
+    <!--<Button
         android:id="@+id/btn_add_movie"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -20,7 +20,7 @@
         android:text="add"
         android:textAllCaps="false"
         android:textColor="@color/secondaryTextColor"
-        android:textSize="18sp" />
+        android:textSize="18sp" />-->
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/list_view"
@@ -30,7 +30,6 @@
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:text="Hello World!"
         tools:listitem="@layout/movie_item_layout" />
 
 </LinearLayout>

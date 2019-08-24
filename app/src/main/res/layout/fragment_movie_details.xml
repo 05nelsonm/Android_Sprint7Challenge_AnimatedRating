@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="250dp"
     android:layout_height="80dp"
     android:layout_gravity="center"
+    android:id="@+id/fragment_details"
     android:background="@color/secondaryLightColor"
     tools:context=".fragment.MovieDetailsFragment">
 
@@ -15,6 +17,7 @@
         android:layout_height="match_parent">
 
         <EditText
+            android:id="@+id/et_movie_name"
             android:textColorHint="@color/secondaryTextColor"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

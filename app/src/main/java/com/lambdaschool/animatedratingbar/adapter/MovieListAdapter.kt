@@ -38,7 +38,11 @@ class MovieListAdapter(private val data: MutableList<MovieItem>) :
         holder.name.text = data[position].movieName
         holder.rating.text = data[position].movieRating.toString()
         holder.itemCard.setOnClickListener {
-            // link to fragment
+            if (data[position] != null) {
+                data[position].
+            }
+
+
         }
     }
 }

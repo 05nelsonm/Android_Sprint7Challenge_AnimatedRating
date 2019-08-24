@@ -2,7 +2,5 @@
 <resources>
     <declare-styleable name="CustomFragmentDetailView">
         <attr name="textSize" format="dimension"/>
-        <attr name="android:entries"/>
-        <attr name="android:id"/>
     </declare-styleable>
 </resources>
