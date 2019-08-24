@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 import com.lambdaschool.animatedratingbar.R
-import com.lambdaschool.animatedratingbar.activity.MovieDetail.Companion.FRAGMENT_KEY
 import com.lambdaschool.animatedratingbar.adapter.MovieListAdapter
 import com.lambdaschool.animatedratingbar.model.MovieItem
 import com.lambdaschool.animatedratingbar.model.MovieItemList
@@ -34,7 +33,7 @@ class ListFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
-    private var movieListListener: OnMovieListFragmentInteractionListener? = null
+    private var movieListListener: OnListFragmentInteractionListener? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -75,7 +74,7 @@ class ListFragment : Fragment() {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        if (context is OnMovieListFragmentInteractionListener) {
+        if (context is OnListFragmentInteractionListener) {
             movieListListener = context
         } else {
             throw RuntimeException(context.toString() + " must implement OnShoppingListFragmentInteractionListener")
@@ -98,8 +97,8 @@ class ListFragment : Fragment() {
      * (http://developer.android.com/training/basics/fragments/communicating.html)
      * for more information.
      */
-    interface OnMovieListFragmentInteractionListener {
-        fun onMovieListFragmentInteraction(item: MovieItem)
+    interface OnListFragmentInteractionListener {
+        fun onListFragmentInteraction(item: MovieItem)
     }
 
     companion object {

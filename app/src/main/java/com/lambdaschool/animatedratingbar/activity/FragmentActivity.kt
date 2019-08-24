@@ -1,32 +1,45 @@
 package com.lambdaschool.animatedratingbar.activity
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.lambdaschool.animatedratingbar.R
+import com.lambdaschool.animatedratingbar.fragment.AddButtonFragment
 import com.lambdaschool.animatedratingbar.fragment.ListFragment
-import com.lambdaschool.animatedratingbar.fragment.MovieDetailsFragment
+import com.lambdaschool.animatedratingbar.fragment.RatingsFragment
 import com.lambdaschool.animatedratingbar.model.MovieItem
 import com.lambdaschool.animatedratingbar.model.MovieItemList.movieList
-import kotlinx.android.synthetic.main.fragment_list.*
 
-class FragmentActivity : AppCompatActivity(), ListFragment.OnMovieListFragmentInteractionListener {
+class FragmentActivity : AppCompatActivity(),
+    AddButtonFragment.OnButtonFragmentInteractionListener,
+    ListFragment.OnListFragmentInteractionListener,
+    RatingsFragment.OnRatingsFragmentInteractionListener {
+
+    lateinit var contextFA: Context
 
     companion object {
         const val FRAGMENT_KEY = "P98AINSDKFIUH09O12U3FIUH"
     }
 
-    override fun onMovieListFragmentInteraction(item: MovieItem) {
+    override fun onButtonFragmentInteraction(item: MovieItem) {
 
-        val fragment = MovieDetailsFragment()
+    }
+
+    override fun onRatingsFragmentInteraction(item: MovieItem) {
+
+    }
+
+    override fun onListFragmentInteraction(item: MovieItem) {
+        /*val listFragment = RatingsFragment()
 
         val bundle = Bundle()
         bundle.putSerializable(FRAGMENT_KEY, item)
-        fragment.arguments = bundle
+        listFragment.arguments = bundle
 
         supportFragmentManager.beginTransaction()
-            .replace(R.id.fragment_details, fragment)
+            .replace(R.id.ratings_fragment_holder, listFragment)
             .addToBackStack(null)
-            .commit()
+            .commit()*/
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -53,10 +66,26 @@ class FragmentActivity : AppCompatActivity(), ListFragment.OnMovieListFragmentIn
         movieList.add(MovieItem("a;ldjsbg;pajknsd", 5, 17))
         movieList.add(MovieItem("a;ldjsbg;pajknsd", 5, 18))
 
-        val fragment = ListFragment()
+        val fragmentButton = AddButtonFragment()
         supportFragmentManager.beginTransaction()
-            .replace(R.id.main_fragment_holder, fragment)
-            .addToBackStack(null)
+            .replace(R.id.button_fragment_holder, fragmentButton)
             .commit()
+
+        val fragmentList = ListFragment()
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.list_fragment_holder, fragmentList)
+            .commit()
+
+        /*if (movieList.size == 0) {
+            val fragmentRating = RatingsFragment()
+
+            val bundle = Bundle()
+            bundle.putSerializable(FRAGMENT_KEY, MovieItem("", 0, 0))
+            fragmentRating.arguments = bundle
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.ratings_fragment_holder, fragmentRating)
+                .addToBackStack(null)
+                .commit()
+        }*/
     }
 }

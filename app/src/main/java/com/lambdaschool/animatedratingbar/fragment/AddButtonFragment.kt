@@ -2,17 +2,15 @@ package com.lambdaschool.animatedratingbar.fragment
 
 import android.content.Context
 import android.os.Bundle
-import android.view.KeyEvent
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-
 import com.lambdaschool.animatedratingbar.R
-import com.lambdaschool.animatedratingbar.activity.MovieDetail.Companion.FRAGMENT_KEY
+import com.lambdaschool.animatedratingbar.activity.FragmentActivity.Companion.FRAGMENT_KEY
 import com.lambdaschool.animatedratingbar.model.MovieItem
-import kotlinx.android.synthetic.main.fragment_movie_details.*
+import kotlinx.android.synthetic.main.fragment_button.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -22,16 +20,17 @@ private const val ARG_PARAM2 = "param2"
 /**
  * A simple [Fragment] subclass.
  * Activities that contain this fragment must implement the
- * [MovieDetailsFragment.OnFragmentInteractionListener] interface
+ * [button.OnFragmentInteractionListener] interface
  * to handle interaction events.
- * Use the [MovieDetailsFragment.newInstance] factory method to
+ * Use the [button.newInstance] factory method to
  * create an instance of this fragment.
  */
-class MovieDetailsFragment : Fragment() {
+class AddButtonFragment : Fragment(), RatingsFragment.OnRatingsFragmentInteractionListener {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
-    private var listener: OnMovieDetailsFragmentInteractionListener? = null
+    private var listener: OnButtonFragmentInteractionListener? = null
+    private var listener2: RatingsFragment.OnRatingsFragmentInteractionListener? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,75 +40,43 @@ class MovieDetailsFragment : Fragment() {
         }
     }
 
+    override fun onRatingsFragmentInteraction(item: MovieItem) {
+        val buttonFragment = RatingsFragment()
+
+        val bundle = Bundle()
+        bundle.putSerializable(FRAGMENT_KEY, item)
+        buttonFragment.arguments = bundle
+
+        childFragmentManager.beginTransaction()
+            .replace(R.id.ratings_fragment_holder, buttonFragment)
+            .addToBackStack(null)
+            .commit()
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_movie_details, container, false)
-    }
-
-    // TODO: Rename method, update argument and hook method into UI event
-    fun onButtonPressed(data: MovieItem) {
-        listener?.onMovieDetailsFragmentInteraction(data)
+        return inflater.inflate(R.layout.fragment_button, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val item = arguments?.getSerializable(FRAGMENT_KEY) as MovieItem
-
-        et_movie_name.setText(item.movieName)
-        // ratingStarAnimate(item.movieRating)
-
-        iv_star1.setOnClickListener {
-            item.movieRating = 1
-            Toast.makeText(context, "---1---", Toast.LENGTH_SHORT).show()
-            // ratingStarAnimate(item.movieRating)
+        btn_add_movie.setOnClickListener {
+            Toast.makeText(context, "Add a movie", Toast.LENGTH_SHORT).show()
+            listener2?.onRatingsFragmentInteraction(MovieItem("", 0, -1))
         }
-        iv_star2.setOnClickListener {
-            item.movieRating = 2
-            Toast.makeText(context, "---2---", Toast.LENGTH_SHORT).show()
-            // ratingStarAnimate(item.movieRating)
-        }
-        iv_star3.setOnClickListener {
-            item.movieRating = 3
-            Toast.makeText(context, "---3---", Toast.LENGTH_SHORT).show()
-            // ratingStarAnimate(item.movieRating)
-        }
-        iv_star4.setOnClickListener {
-            item.movieRating = 4
-            Toast.makeText(context, "---4---", Toast.LENGTH_SHORT).show()
-            // ratingStarAnimate(item.movieRating)
-        }
-        iv_star5.setOnClickListener {
-            item.movieRating = 5
-            Toast.makeText(context, "---5---", Toast.LENGTH_SHORT).show()
-            // ratingStarAnimate(item.movieRating)
-        }
+    }
 
-        et_movie_name.setOnKeyListener(View.OnKeyListener { v, keyCode, event ->
-            if (keyCode == KeyEvent.KEYCODE_ENTER && event.action == KeyEvent.ACTION_UP) {
-                item.movieName = et_movie_name.text.toString()
-                listener?.onMovieDetailsFragmentInteraction(item)
-                return@OnKeyListener true
-            }
-            false
-        })
-
-        //listener?.onMovieDetailsFragmentInteraction(MovieItem("UUUUUUU", item.movieRating, 0))
-
-        /*for (i in 1 until 5) {
-            when (i <= item.movieRating) {
-                true ->
-            }
-        }*/
-
+    fun onButtonPressed(item: MovieItem) {
+        listener?.onButtonFragmentInteraction(item)
     }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        if (context is OnMovieDetailsFragmentInteractionListener) {
+        if (context is OnButtonFragmentInteractionListener) {
             listener = context
         } else {
             throw RuntimeException(context.toString() + " must implement OnFragmentInteractionListener")
@@ -132,8 +99,8 @@ class MovieDetailsFragment : Fragment() {
      * (http://developer.android.com/training/basics/fragments/communicating.html)
      * for more information.
      */
-    interface OnMovieDetailsFragmentInteractionListener {
-        fun onMovieDetailsFragmentInteraction(item: MovieItem)
+    interface OnButtonFragmentInteractionListener {
+        fun onButtonFragmentInteraction(item: MovieItem)
     }
 
     companion object {
@@ -143,12 +110,12 @@ class MovieDetailsFragment : Fragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment MovieDetailsFragment.
+         * @return A new instance of fragment button.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            MovieDetailsFragment().apply {
+            AddButtonFragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)

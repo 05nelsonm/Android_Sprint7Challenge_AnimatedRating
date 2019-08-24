@@ -4,10 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="250dp"
     android:layout_height="80dp"
-    android:layout_gravity="center"
     android:id="@+id/fragment_details"
     android:background="@color/secondaryLightColor"
-    tools:context=".fragment.MovieDetailsFragment">
+    tools:context=".fragment.RatingsFragment">
 
     <LinearLayout
         android:orientation="vertical"

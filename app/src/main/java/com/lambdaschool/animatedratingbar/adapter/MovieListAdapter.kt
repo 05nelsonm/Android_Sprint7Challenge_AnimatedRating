@@ -2,7 +2,6 @@ package com.lambdaschool.animatedratingbar.adapter
 
 
 import android.content.Context
-import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,18 +10,16 @@ import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.lambdaschool.animatedratingbar.R
-import com.lambdaschool.animatedratingbar.activity.MovieDetail.Companion.FRAGMENT_KEY
 import com.lambdaschool.animatedratingbar.fragment.ListFragment
-import com.lambdaschool.animatedratingbar.fragment.MovieDetailsFragment
 import com.lambdaschool.animatedratingbar.model.MovieItem
 import kotlinx.android.synthetic.main.movie_item_layout.view.*
 
 class MovieListAdapter(
     private val data: MutableList<MovieItem>,
-    private val listener: ListFragment.OnMovieListFragmentInteractionListener?
+    private val listener: ListFragment.OnListFragmentInteractionListener?
 ) : RecyclerView.Adapter<MovieListAdapter.ViewHolder>() {
 
-    lateinit var context: Context
+    lateinit var contextRV: Context
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val name: TextView = view.tv_movie_name
@@ -35,14 +32,14 @@ class MovieListAdapter(
     init {
         mOnClickListener = View.OnClickListener { v ->
             val item = v.tag as MovieItem
-            listener?.onMovieListFragmentInteraction(item)
+            listener?.onListFragmentInteraction(item)
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val viewGroup =
             LayoutInflater.from(parent.context).inflate(R.layout.movie_item_layout, parent, false)
-        context = parent.context
+        contextRV = parent.context
         return ViewHolder(viewGroup)
     }
 
@@ -55,10 +52,10 @@ class MovieListAdapter(
         holder.rating.text = data[position].movieRating.toString()
         holder.itemCard.setOnClickListener {
             if (listener != null) {
-                listener.onMovieListFragmentInteraction(data[position])
-        }
+                listener.onListFragmentInteraction(data[position])
+            }
 
-            //Toast.makeText(context, "${data[position].movieIndexPos}", Toast.LENGTH_SHORT).show()
+            Toast.makeText(contextRV, "${data[position].movieIndexPos}", Toast.LENGTH_SHORT).show()
         }
 
 
