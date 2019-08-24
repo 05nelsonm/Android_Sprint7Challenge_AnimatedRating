@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 
 import com.lambdaschool.animatedratingbar.R
 import com.lambdaschool.animatedratingbar.activity.MovieDetail.Companion.FRAGMENT_KEY
@@ -30,7 +31,7 @@ class MovieDetailsFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
-    private var listener: OnFragmentInteractionListener? = null
+    private var listener: OnMovieDetailsFragmentInteractionListener? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,7 +51,7 @@ class MovieDetailsFragment : Fragment() {
 
     // TODO: Rename method, update argument and hook method into UI event
     fun onButtonPressed(data: MovieItem) {
-        listener?.onFragmentInteraction(data)
+        listener?.onMovieDetailsFragmentInteraction(data)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -63,35 +64,40 @@ class MovieDetailsFragment : Fragment() {
 
         iv_star1.setOnClickListener {
             item.movieRating = 1
+            Toast.makeText(context, "---1---", Toast.LENGTH_SHORT).show()
             // ratingStarAnimate(item.movieRating)
         }
         iv_star2.setOnClickListener {
             item.movieRating = 2
+            Toast.makeText(context, "---2---", Toast.LENGTH_SHORT).show()
             // ratingStarAnimate(item.movieRating)
         }
         iv_star3.setOnClickListener {
             item.movieRating = 3
+            Toast.makeText(context, "---3---", Toast.LENGTH_SHORT).show()
             // ratingStarAnimate(item.movieRating)
         }
         iv_star4.setOnClickListener {
             item.movieRating = 4
+            Toast.makeText(context, "---4---", Toast.LENGTH_SHORT).show()
             // ratingStarAnimate(item.movieRating)
         }
         iv_star5.setOnClickListener {
             item.movieRating = 5
+            Toast.makeText(context, "---5---", Toast.LENGTH_SHORT).show()
             // ratingStarAnimate(item.movieRating)
         }
 
         et_movie_name.setOnKeyListener(View.OnKeyListener { v, keyCode, event ->
             if (keyCode == KeyEvent.KEYCODE_ENTER && event.action == KeyEvent.ACTION_UP) {
                 item.movieName = et_movie_name.text.toString()
-                listener
+                listener?.onMovieDetailsFragmentInteraction(item)
                 return@OnKeyListener true
             }
             false
         })
 
-        listener?.onFragmentInteraction(MovieItem("UUUUUUU", item.movieRating, 0))
+        //listener?.onMovieDetailsFragmentInteraction(MovieItem("UUUUUUU", item.movieRating, 0))
 
         /*for (i in 1 until 5) {
             when (i <= item.movieRating) {
@@ -103,7 +109,7 @@ class MovieDetailsFragment : Fragment() {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        if (context is OnFragmentInteractionListener) {
+        if (context is OnMovieDetailsFragmentInteractionListener) {
             listener = context
         } else {
             throw RuntimeException(context.toString() + " must implement OnFragmentInteractionListener")
@@ -126,9 +132,8 @@ class MovieDetailsFragment : Fragment() {
      * (http://developer.android.com/training/basics/fragments/communicating.html)
      * for more information.
      */
-    interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        fun onFragmentInteraction(item: MovieItem)
+    interface OnMovieDetailsFragmentInteractionListener {
+        fun onMovieDetailsFragmentInteraction(item: MovieItem)
     }
 
     companion object {

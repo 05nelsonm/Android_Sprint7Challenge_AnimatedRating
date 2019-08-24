@@ -3,7 +3,6 @@ package com.lambdaschool.animatedratingbar.activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.lambdaschool.animatedratingbar.R
-import com.lambdaschool.animatedratingbar.activity.MovieDetail.Companion.FRAGMENT_KEY
 import com.lambdaschool.animatedratingbar.fragment.ListFragment
 import com.lambdaschool.animatedratingbar.fragment.MovieDetailsFragment
 import com.lambdaschool.animatedratingbar.model.MovieItem
@@ -11,26 +10,23 @@ import com.lambdaschool.animatedratingbar.model.MovieItemList.movieList
 import kotlinx.android.synthetic.main.fragment_list.*
 
 class FragmentActivity : AppCompatActivity(), ListFragment.OnMovieListFragmentInteractionListener {
-    override fun onFragmentInteraction(item: MovieItem) {
 
-        btn_add_movie.setOnClickListener {
-            val fragment = MovieDetailsFragment()
+    companion object {
+        const val FRAGMENT_KEY = "P98AINSDKFIUH09O12U3FIUH"
+    }
 
-            val bundle = Bundle()
-            bundle.putSerializable(FRAGMENT_KEY, MovieItem("", 0, -1))
-            fragment.arguments = bundle
-
-            supportFragmentManager.beginTransaction()
-                .add(R.id.fragment_details, fragment)
-                //.addToBackStack(null)
-                .commit()
-        }
+    override fun onMovieListFragmentInteraction(item: MovieItem) {
 
         val fragment = MovieDetailsFragment()
 
         val bundle = Bundle()
         bundle.putSerializable(FRAGMENT_KEY, item)
         fragment.arguments = bundle
+
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.fragment_details, fragment)
+            .addToBackStack(null)
+            .commit()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

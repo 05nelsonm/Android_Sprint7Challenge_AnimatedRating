@@ -24,7 +24,7 @@ private const val ARG_PARAM2 = "param2"
 /**
  * A simple [Fragment] subclass.
  * Activities that contain this fragment must implement the
- * [ListFragment.OnShoppingListFragmentInteractionListener] interface
+ * [ListFragment.OnMovieListFragmentInteractionListener] interface
  * to handle interaction events.
  * Use the [ListFragment.newInstance] factory method to
  * create an instance of this fragment.
@@ -69,7 +69,7 @@ class ListFragment : Fragment() {
         list_fragment.setHasFixedSize(true)
         val layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
         list_fragment.layoutManager = layoutManager
-        val movieListAdapter = MovieListAdapter(MovieItemList.movieList)
+        val movieListAdapter = MovieListAdapter(MovieItemList.movieList, movieListListener)
         list_fragment.adapter = movieListAdapter
     }
 
@@ -99,7 +99,7 @@ class ListFragment : Fragment() {
      * for more information.
      */
     interface OnMovieListFragmentInteractionListener {
-        fun onFragmentInteraction(item: MovieItem)
+        fun onMovieListFragmentInteraction(item: MovieItem)
     }
 
     companion object {
