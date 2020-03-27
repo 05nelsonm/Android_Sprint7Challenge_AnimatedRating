@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">AnimatedRatingBar</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string-array name="custom_fragment_detail_view">
+        <item>Name</item>
+    </string-array>
+</resources>
